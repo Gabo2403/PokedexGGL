@@ -1,0 +1,59 @@
+@defer (when pokemon()) {
+    <section class="h-screen" [ngClass]="bgColor()">
+      <div class="container mx-auto p-8">
+        <div class="flex flex-row justify-between items-center">
+          <a [routerLink]="['/pokedex']">
+            <i class="fa-solid fa-arrow-left text-white"></i>
+          </a>
+          <a (click)="updateStorage($event)">
+            <i [ngClass]="{'fa-regular': !isFavorite(), 'fa-solid': isFavorite()}" class="fa-heart text-white"></i>
+          </a>
+        </div>
+        <div class="mt-5">
+          <div class="flex flex-row justify-between items-center mb-2">
+            <h3 class="text-white text-2xl font-bold">{{pokemon()?.name | titlecase}}</h3>
+            <p class="text-white text-xs font-bold"># {{order()}}</p>
+          </div>
+          <app-pokemon-types [types]="pokemon()!.types" [bgType]="bgType()"></app-pokemon-types>
+        </div>
+      </div>
+      <div class="container mx-auto p-8 bg-white rounded-t-3xl h-full w-screen relative mt-[90px]">
+        @defer (when pokemon()?.sprites) {
+        <div class="absolute top-[-130px] left-[30%] md:left-[40%]">
+          <img [style.view-transition-name]="'pokemon-'+pokemon()?.id" loading="lazy" class="w-40 md:w-55 object-center"
+            [srcset]="pokemon()!.id | pokemonImage" alt="">
+        </div>
+        }@placeholder {
+        <img loading="lazy" class="w-20" srcset="pokeball2.png" alt="">
+        }
+    
+        <app-pokemon-info-item [items]="infoItems()" [selected]="infoSelected()" (updateSelected)="updateSelected($event)">
+        </app-pokemon-info-item>
+    
+        <div class="mt-4">
+          @switch (infoSelected()) {
+            @case ('Acerca de') {
+            <app-pokemon-info-about (evolutionRoute)="setEvolutionRoute($event)" [abilities]="pokemon()!.abilities" [weight]="pokemon()!.weight"
+              [height]="pokemon()!.height" [id]="pokemon()!.id">
+            </app-pokemon-info-about>
+            }
+            @case ('Estadisticas') {
+              <app-pokemon-base-stats [stats]="pokemon()!.stats"></app-pokemon-base-stats>
+            }
+            @case ('Evolucion') {
+              <app-pokemon-evolution [evolutionUrl]="evolutionRoute()"></app-pokemon-evolution>
+            }
+            @case ('Movimientos') {
+              <app-pokemon-moves [moves]="pokemon()!.moves"></app-pokemon-moves>
+            }
+          }
+    
+        </div>
+    
+      </div>
+    </section>
+    
+    }@placeholder {
+    <p>Cargando Información....</p>
+    }
+    

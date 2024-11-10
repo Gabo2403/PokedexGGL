@@ -1,0 +1,42 @@
+@defer (when stats()) {
+    <section class="flex flex-col gap-3">
+      @for (item of stats(); track item) {
+      <div class="flex flex-row gap-4 items-center">
+        <h4 class="text-sm text-gray-500 basis-1/3">
+          {{item.stat.name.includes('special-') ? item.stat.name.replace('special-', 'Sp. ') : item.stat.name| titlecase}}
+        </h4>
+        <p class="text-slate-700 text-sm">{{item.base_stat}}</p>
+        <div class="bg-gray-200 rounded h-1 w-full" role="progressbar">
+          <div [ngClass]="
+            {
+              'bg-[#F5A9C5]': $even,
+              'bg-[#78D09B]': $odd
+            }"
+          class="rounded h-1 text-center"
+          [style.width]="((item.base_stat * 100)/maxStat())+'%'"
+            [style.transition]="'width 2s'">
+          </div>
+        </div>
+      </div>
+      }@empty {
+      <p>No encontramos stats disponibles.</p>
+      }
+        <div class="flex flex-row gap-4 items-center mt-3">
+          <h4 class="text-sm text-gray-500 basis-1/3">
+           Total
+          </h4>
+          <p class="text-slate-700 text-sm">{{total()}}</p>
+          <div class="bg-gray-200 rounded h-1 w-full" role="progressbar">
+            <div
+            class="rounded h-1 text-center bg-[#78D09B]"
+            [style.width]="((total() * 100)/maxTotalStat())+'%'"
+              [style.transition]="'width 2s'">
+            </div>
+          </div>
+        </div>
+    </section>
+    
+    }@placeholder {
+    <p>Cargando Información...</p>
+    }
+    

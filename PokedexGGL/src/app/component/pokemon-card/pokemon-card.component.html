@@ -1,0 +1,20 @@
+<div (click)="handleClick()" class="flex flex-col gap-2 p-2 rounded-[10px] shadow-lg h-28" [ngClass]="bgColor()">
+    <div class="flex flex-row justify-end">
+      <p class="text-[9px] text-gray-200">#{{order()}}</p>
+    </div>
+    <div class="flex flex-row gap-1 items-stretch justify-between h-full">
+      <div>
+        <h2 class="text-[11px] font-extrabold text-white">{{pokemon().name | titlecase}}</h2>
+        <app-pokemon-types [types]="pokemon().types" [bgType]="bgType()"></app-pokemon-types>
+      </div>
+      <div class="self-end">
+        @defer (when pokemon().sprites) {
+        <img [style.view-transition-name]="'pokemon-'+pokemon().id" loading="lazy" class="w-20"
+          [srcset]="pokemon().id | pokemonImage" alt="">
+        }@placeholder {
+        <img loading="lazy" class="w-20" srcset="pokeball2.png" alt="">
+        }
+      </div>
+    </div>
+  </div>
+  

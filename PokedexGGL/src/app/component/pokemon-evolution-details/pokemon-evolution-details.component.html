@@ -1,0 +1,46 @@
+@defer (when detail()) {
+    @if (detail()['item']) {
+      <img [srcset]="detail()['item']!['name'] | itemImage" alt="">
+      <span class="text-[10px] text-slate-600 font-bold">{{detail()['item']!['name']}}</span>
+      }
+      @if (detail()['held_item']) {
+        <img [srcset]="detail()['held_item']!['name'] | itemImage" alt="">
+        <span class="text-[10px] text-slate-600 font-bold">{{detail()['held_item']!['name']}}</span>
+        }
+      @if (detail()['min_level']) {
+      <i class="fa-solid fa-arrow-right text-gray-200"></i>
+      <span class="text-[10px] text-slate-600 font-bold">Lvl {{detail()['min_level']}}</span>
+      }
+      @if(detail()['time_of_day']){
+      @switch (detail()['time_of_day']) {
+      @case ('day') {
+      <i class="fa-solid fa-sun text-yellow-300"></i>
+      }
+      @case ('night') {
+      <i class="fa-solid fa-moon text-slate-800"></i>
+      }
+      }
+      <span class="text-[10px] text-slate-600 font-bold">{{detail()['time_of_day']}}</span>
+      }
+  
+      @if (detail()['known_move_type']) {
+        <i class="fa-solid fa-hat-wizard text-pink-400"></i>
+        <span class="text-[10px] text-slate-600 font-bold">Move: {{detail()['known_move_type']!['name']}}</span>
+      }
+      @if ((
+        !detail()['item'] &&
+        !detail()['held_item'] &&
+        !detail()['min_level'] &&
+        !detail()['time_of_day'] &&
+        !detail()['known_move_type']
+        )
+        && detail()['trigger']
+        && detail()['trigger']['name'] === 'trade') {
+        <i class="fa-solid fa-arrow-right-arrow-left text-gray-200"></i>
+        <span class="text-[10px] text-slate-600 font-bold">{{detail()['trigger']['name']}}</span>
+      }
+  
+  }@placeholder {
+    <p>Cargando Información...</p>
+  }
+  

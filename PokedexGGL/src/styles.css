@@ -1,1 +1,162 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.bg-normal {
+  background-color: #C3C2A4;
+}
+
+.bg-normal-type {
+  background-color: #D5D1AA;
+}
+
+.bg-fighting{
+  background-color: #A68069;
+}
+
+.bg-fighting-type{
+  background-color: #BF9780;
+}
+
+.bg-flying{
+  background-color: #D4FAFA;
+}
+
+.bg-flying-type{
+  background-color: #C3EEFA;
+}
+
+.bg-poison{
+  background-color: #E7C6FF;
+}
+.bg-poison-type{
+  background-color: #F3CEFF;
+}
+
+.bg-ground{
+  background-color: #5F4633;
+}
+
+.bg-ground-type{
+  background-color: #69503C;
+}
+
+.bg-rock{
+  background-color: #8990a2;
+}
+
+.bg-rock-type{
+  background-color: #A3A8B7;
+}
+
+.bg-bug{
+  background-color: #5FB15F;
+}
+
+.bg-bug-type{
+  background-color: #6BC76B;
+}
+
+.bg-ghost{
+background-color: #727376;
+}
+
+.bg-ghost-type{
+  background-color: #AFBBC2;
+}
+
+.bg-steel{
+  background-color: #B0C4DE;
+}
+
+.bg-steel-type{
+  background-color: #9EB0C8;
+}
+
+.bg-fire{
+  background-color: #FB6C6C;
+}
+
+.bg-fire-type{
+  background-color: #FD8585;
+}
+
+.bg-water{
+  background-color: #76BDFE;
+}
+
+.bg-water-type{
+  background-color: #90D1FE;
+}
+
+.bg-grass{
+  background-color: #48D0B0;
+}
+
+.bg-grass-type{
+  background-color: #61E0C9;
+}
+
+.bg-electric{
+  background-color: #FFD86F;
+}
+
+.bg-electric-type{
+  background-color: #FFE581;
+}
+
+.bg-psychic{
+  background-color: #ECC449;
+}
+
+.bg-psychic-type{
+  background-color: #F4DD94;
+}
+
+.bg-ice{
+  background-color: #A2D2DF;
+}
+
+.bg-ice-type{
+  background-color: #BAF2EF;
+}
+
+.bg-dragon{
+  background-color: #F4C272;
+}
+
+.bg-dragon-type{
+  background-color: #fae5a8;
+}
+
+.bg-dark{
+  background-color: #31394C;
+}
+
+.bg-dark-type{
+  background-color: #414C66;
+}
+
+.bg-fairy{
+  background-color: #FECFD9
+}
+
+.bg-fairy-type{
+  background-color: #FDBFCC;
+}
+
+.bg-stellar{
+  background-color: #796099
+}
+
+.bg-stellar-type{
+  background-color: #8D70B3;
+}
+
+.bg-unknown{
+  background-color: #CFD8DC
+}
+
+.bg-unknown-type{
+  background-color: #B0BEC5;
+}

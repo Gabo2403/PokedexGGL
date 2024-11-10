@@ -1,0 +1,84 @@
+<section>
+    @defer (when evolutionChain()) {
+    <p class="text-slate-700 text-sm font-bold">Evolution Chain</p>
+    <div class="flex flex-col gap-4 mt-4 ">
+      <div class="flex flex-row gap-4 flex-grow justify-start items-center">
+        <div class="flex flex-col gap-2 items-start basis-1/3">
+          <div class="rounded-full bg-gray-100 p-2">
+            @defer (when firstEvolution()) {
+              <img class="w-14" [srcset]="firstEvolution() | pokemonImage" alt="">
+            }@placeholder {
+              <img loading="lazy" class="w-20" srcset="pokeball2.png" alt="">
+            }
+          </div>
+          <h3 class="text-xs text-slate-700 font-semibold ml-2">
+            {{firstEvolutionName() | titlecase}}
+          </h3>
+        </div>
+        <div class="flex-flex-row w-full basis-2/3">
+          @for (evolve of evolvesTo(); track evolve) {
+          <div class="flex flex-row items-center justify-around" [ngClass]="{'mt-4': $index > 0}">
+            <div class="flex flex-col items-center gap-3">
+              @for (detail of evolve.evolution_details; track detail) {
+              <app-pokemon-evolution-details [detail]="detail"></app-pokemon-evolution-details>
+              }
+            </div>
+            <div class="flex flex-col gap-2 items-center">
+              <div class="rounded-full bg-gray-100 p-2">
+                @defer (when evolve.species) {
+                  <img class="w-14" [srcset]="extractPokemonSpecieId(evolve.species.url) | pokemonImage" alt="">
+                }@placeholder {
+                  <img loading="lazy" class="w-20" srcset="pokeball2.png" alt="">
+                }
+              </div>
+              <h3 class="text-xs text-slate-700 font-semibold">{{evolve.species.name | titlecase}}</h3>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  
+    @for (evolve of evolvesTo(); track evolve) {
+    <div class="flex flex-col gap-6 mt-6">
+      @for (item of evolve.evolves_to; let j = $index; track item) {
+      <div class="flex flex-row gap-6 flex-grow justify-start items-center">
+        <div class="flex flex-col gap-2 items-start basis-1/3">
+          <div class="rounded-full bg-gray-100 p-2">
+            @defer (when evolve.species) {
+              <img class="w-14" [srcset]="extractPokemonSpecieId(evolve.species.url) | pokemonImage" alt="">
+            }@placeholder {
+              <img loading="lazy" class="w-20" srcset="pokeball2.png" alt="">
+            }
+          </div>
+          <h3 class="text-xs text-slate-700 font-semibold ml-2">
+            {{evolve.species.name | titlecase}}
+          </h3>
+        </div>
+        <div class="flex flex-row w-full basis-2/3 justify-around items-center">
+          <div class="flex flex-col">
+            @for (item_detail of item.evolution_details; let i = $index; track i) {
+            <app-pokemon-evolution-details [detail]="item_detail"></app-pokemon-evolution-details>
+            }
+          </div>
+          <div class="flex flex-col gap-2 items-center">
+            <div class="rounded-full bg-gray-100 p-2">
+              @defer (when evolve.species) {
+                <img class="w-14" [srcset]="extractPokemonSpecieId(item.species.url) | pokemonImage" alt="">
+              }@placeholder {
+                <img loading="lazy" class="w-20" srcset="pokeball2.png" alt="">
+              }
+            </div>
+            <h3 class="text-xs text-slate-700 font-semibold">{{item.species.name | titlecase}}</h3>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    }
+  
+    }@placeholder {
+    <p>Cargando información</p>
+    }
+  </section>
+  

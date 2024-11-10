@@ -1,0 +1,12 @@
+@for (item of items(); track item) {
+    <a
+    (click)="changeOptionSelected($event, item)"
+    [ngClass]="{'text-slate-800 border-blue-500': item === selected(), 'text-gray-300 border-gray-300': item !== selected()}"
+    class="cursor-pointer py-3 border-b-2 font-bold text-xs inline-flex items-center leading-none  transition-all">
+      {{item}}
+    </a>
+  }
+  
+  
+  
+  

@@ -1,0 +1,22 @@
+<div class="container mx-auto p-8">
+    <section class="flex flex-row justify-between items-center p-3">
+      <h2 class="text-2xl font-extrabold font-sans text-slate-800 md:text-center">Pokédex</h2>
+    </section>
+    <section class="grid grid-cols-3 gap-4 mt-4 items-center justify-center">
+      @for (pokemon of pokedexService.pokedex(); track pokemon.name) {
+      <app-pokemon-card (selected)="handleClick($event)" [name]="pokemon.name"></app-pokemon-card>
+      } @empty {
+      <p class="text-lg">Cargando Pokedex....</p>
+      }
+    </section>
+    <section class="flex flex-row items-center justify-center mt-6 gap-4">
+      <a (click)="previousPokedex($event)"
+        [ngClass]="{'text-slate-800': pokedexService.previousItems(), 'text-gray-200': !pokedexService.previousItems()}"
+        class="text-xs font-semibold" href="">Anterior</a>
+      <a (click)="nextPokedex($event)"
+        [ngClass]="{'text-slate-800': pokedexService.nextItems(), 'text-gray-200': !pokedexService.nextItems()}"
+        class="text-xs font-semibold" href="">Siguiente</a>
+    </section>
+  </div>
+  
+  
